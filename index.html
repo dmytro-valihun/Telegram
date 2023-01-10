@@ -7,58 +7,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Telegram Web</title>
     <link type="Image/x-icon" href="images/favicon/favicon.ico" rel="shortcut icon">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body class="body">
 
 
     <div class="container">
 
-                                                        <!-- window login -->
-        <div class="first_screen">
-            <div class="logo">
-                <img src="images/Telegram_2019_Logo.svg.png" alt="">
-            </div>
+        <!-- login -->
+        <!-- <div class="login">
+            <img src="images/Telegram_2019_Logo.svg.png" width="100px" height="100px" alt="" class="login__img">
             <h1>Telegram</h1>
-            <div class="login_form">
-                <form action="#" method="get">
-                    <div class="user_login">
-                        <label for="login">Enter your login
-                        </label>
-                        <input type="text" id="login">
-                    </div>
-                    <div class="user_pass">
-                        <label for="password"> Enter your password
-                        </label>
-                        <input type="password" id="password">
-                    </div>
-                    <button type="button">login</button>
-                </form>
-            </div>
-        </div>
+            <form action="#" method="get" class="login__form">
+                <div>Enter your login
+                    <p><input type="text" size="30" name="login" class="login__input-login"></p>
+                </div>
+                <div>Enter your password
+                    <p><input type="password" size="30" name="pass" class="login__input-pass"></p>
+                </div>
+                <button type="button" class="login__btn">login</button>
+            </form>
+        </div> -->
 
-                                                <!--    M A I N    S C R E E N-->
+        <!-- main -->
 
-        <div class="main_screen">
-            <div class="left_side">
-                <div class="menu_panel">
-                    <div class="burger_menu burger_open">
-                        <div class="burger"></div>
+        <div class="message-window">
+
+            <div class="chat-list">
+                <div class="burger-menu">
+                    <div class="burger-menu__wrap">
+                        <div class="burger-menu__btn"></div>
                     </div>
                 </div>
-                <div class="user_list">
-                    <ul>
-                        <li>
-                            <div class="user_face">
-                                <img src="images/users_img/2.jpg" alt="">
-                            </div>
-                            <p>User name</p>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="chat-list__user-list">
+                    <!-- <li class="chat-list__user">
+                        <img src="images/users_img/2.jpg" alt=""><p>User name</p>
+                    </li> -->
+                </ul>
             </div>
 
-            <div class="right_side">
+
+
+            <div class="message">
                 <div class="chatting">
                     <div class="top"></div>
                     <div class="bottom">
@@ -69,8 +59,6 @@
                                 <textarea name="" id="text" cols="4" placeholder="Write a message"></textarea>
                             </form>
                         </div>
-                        <div class="other">
-                        </div>
                     </div>
                 </div>
             </div>
@@ -78,7 +66,7 @@
 
                                                 <!--    P O P   U Ps-->
 
-        <div class="pop_up">
+        <!-- <div class="pop_up">
             <div class="user_info_pop">
                 <div class="pop_block">
                     <div class="menu_panel">
@@ -104,7 +92,7 @@
                     <button type="button" class="cancel_btn">No</button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         
     </div>

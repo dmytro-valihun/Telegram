@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16;
+    font-weight: 400;
+}
+.img-responsive {
+    width: 100%;
+    height: auto;
+}
+
+/* ------------------- login ------------------ */
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.login h1 {
+    margin-top: 15px;
+}
+.login__form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    font-size: 16px;
+}
+.login__form  div {
+    padding-top: 10px;
+}
+.login__form p {
+    margin-top: 10px;
+}
+.login__btn {
+    margin-top: 30px;
+    padding: 10px;
+    border: none;
+    background-color: #3390EC;
+    border-radius: 10px;
+    border: solid 1px #99BA92;
+    font-size: 25px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #fff; 
+}
+.login__btn:hover {
+    border: solid 1px #222; 
+}
+.login__input-login,
+.login__input-pass {
+    border-radius: 10px;
+    padding: 11px 13px;
+    font-size: 16px;
+    border: solid 1px rgb(201, 198, 198);
+}
+
+/* --------------- main ------------ */
+
+.message-window {
+    display: flex;
+    height: 100vh;
+}
+.chat-list {
+    width: 30%;
+    background: blue;
+}
+.message {
+    width: 70%;
+    background-color: red;
+}
+.burger-menu {
+    height: 40px;
+    padding: 20px;
+    display: flex;
+}
+.burger-menu__wrap{
+    cursor: pointer;
+    position: relative;
+    padding: 17px 10px 19px;
+    border: 1px solid black;
+    border-radius: 8px;
+}
+/* .burg-wrap:hover {
+    background-color: ;
+} */
+.burger-menu__btn {
+    width: 20px;
+    height: 3px;
+    background-color: #858383;
+    cursor: pointer;
+}
+.burger-menu__btn::before {
+    content: '';
+    width: 20px;
+    height: 3px;
+    background-color: #858383;
+    position: absolute;
+    top: 24px;
+}
+.burger-menu__btn::after {
+    content: '';
+    width: 20px;
+    height: 3px;
+    background-color: #858383;
+    position: absolute;
+    top: 10px;
+} 
