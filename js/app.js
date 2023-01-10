@@ -1,0 +1,10 @@
+// const login = document.querySelector('.first_screen');
+// login.hidden = true;
+// const mainScreenLeft = document.querySelector('.left_side');
+// mainScreenLeft.hidden = true;
+// const mainScreenRight = document.querySelector('.right_side');
+// mainScreenRight.hidden = true;
+// const exitWindow = document.querySelector('.exit_pop');
+// exitWindow.hidden = true;
+// const logOut = document.querySelector('.user_info_pop');
+// logOut.hidden = false

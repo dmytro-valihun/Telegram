@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Telegram Web</title>
+    <link type="Image/x-icon" href="images/favicon/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <div class="container">
+
+                                                        <!-- window login -->
+        <div class="first_screen">
+            <div class="logo">
+                <img src="images/Telegram_2019_Logo.svg.png" alt="">
+            </div>
+            <h1>Telegram</h1>
+            <div class="login_form">
+                <form action="#" method="get">
+                    <div class="user_login">
+                        <label for="login">Enter your login
+                        </label>
+                        <input type="text" id="login">
+                    </div>
+                    <div class="user_pass">
+                        <label for="password"> Enter your password
+                        </label>
+                        <input type="password" id="password">
+                    </div>
+                    <button type="button">login</button>
+                </form>
+            </div>
+        </div>
+
+                                                <!--    M A I N    S C R E E N-->
+
+        <div class="main_screen">
+            <div class="left_side">
+                <div class="menu_panel">
+                    <div class="burger_menu burger_open">
+                        <div class="burger"></div>
+                    </div>
+                </div>
+                <div class="user_list">
+                    <ul>
+                        <li>
+                            <div class="user_face">
+                                <img src="images/users_img/2.jpg" alt="">
+                            </div>
+                            <p>User name</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="right_side">
+                <div class="chatting">
+                    <div class="top"></div>
+                    <div class="bottom">
+                        <div class="add_file"></div>
+                        <div class="form_block">
+                            <form action="#" name="message">
+                                <label for="text"></label>
+                                <textarea name="" id="text" cols="4" placeholder="Write a message"></textarea>
+                            </form>
+                        </div>
+                        <div class="other">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                                                <!--    P O P   U Ps-->
+
+        <div class="pop_up">
+            <div class="user_info_pop">
+                <div class="pop_block">
+                    <div class="menu_panel">
+                        <div class="burger_menu burger_close">
+                            <div class="burger"></div>
+                        </div>
+                    </div>
+                    <div class="user_face">
+                        <img src="images/users_img/2.jpg" alt="">
+                    </div>
+                    <h3>User Name</h3>
+                    <button type="button">Exit</button>
+                </div>
+            </div>
+
+            <div class="exit_pop">
+                <h2>Telegram</h2>
+                <p>
+                    Are you sure want to terminate this session?
+                </p>
+                <div class="exit_btn_group">
+                    <button type="button" class="exit_btn">Yes</button>
+                    <button type="button" class="cancel_btn">No</button>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <script src="./js/app.js"></script>
+</body>
+</html>
