@@ -110,3 +110,60 @@
     position: absolute;
     top: 10px;
 } 
+
+/* ----------messages---------- */
+.message {
+    background: url(../images/pattern-20.svg);
+    min-width: 70%;
+    position: relative;
+    background: -moz-linear-gradient(-45deg, #cdeb8e 0%, #a5c956 100%); background: -webkit-linear-gradient(-45deg, #cdeb8e 0%, #a5c956 100%); 
+    background: linear-gradient(135deg, #cdeb8e 0%, #a5c956 100%); 
+    opacity: 0.7;
+    
+} /* Доработать градиент */
+
+.message__chatting {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: inherit;
+    z-index: 2;
+}
+.message__top {
+    height: 45px;
+    width: 100%;
+    background-color: #fff;
+}
+.message__bottom {
+    height: 45px;
+    width: 100%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.message__bottom__form_block {
+    position: inherit;
+    bottom: 0;
+    margin-left: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+form {
+    width: 100%;
+    height: 100%;
+}
+#text  {
+    resize: none;
+    width: 100%;
+    font-size: 20px;
+    min-height: 30px;
+    max-height: 60px;
+    border: none;
+
+}
