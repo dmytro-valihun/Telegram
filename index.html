@@ -6,17 +6,16 @@
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Telegram Web</title>
-    <link type="Image/x-icon" href="images/favicon/favicon.ico" rel="shortcut icon">
-    <link rel="stylesheet" href="css/main.css">
+    <link type="Image/x-icon" href="./images/favicon.ico" rel="shortcut icon">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body">
-
 
     <div class="container">
 
         <!-- login -->
-        <!-- <div class="login">
-            <img src="images/Telegram_2019_Logo.svg.png" width="100px" height="100px" alt="" class="login__img">
+        <div class="login">
+            <img src="./images/tegram-logo.svg.png" width="100px" height="100px" alt="" class="login__img">
             <h1>Telegram</h1>
             <form action="#" method="get" class="login__form">
                 <div>Enter your login
@@ -25,9 +24,9 @@
                 <div>Enter your password
                     <p><input type="password" size="30" name="pass" class="login__input-pass"></p>
                 </div>
-                <button type="button" class="login__btn">login</button>
+                <button type="button" class="login__btn btn">login</button>
             </form>
-        </div> -->
+        </div>
 
         <!-- main -->
 
@@ -40,61 +39,54 @@
                     </div>
                 </div>
                 <ul class="chat-list__user-list">
-                    <!-- <li class="chat-list__user">
-                        <img src="images/users_img/2.jpg" alt=""><p>User name</p>
-                    </li> -->
+                    <li class="chat-list__user">
+                        <!-- <img src="" alt=""><p>User name</p> -->
+                    </li>
                 </ul>
             </div>
 
-
-
             <div class="message">
                 <div class="message__chatting">
-                    <div class="message__top"></div>
-                    <div class="message__bottom">
-                        <div class="message__bottom__form_block">
-                            <form action="#" name="message">
-                                <label for="text"></label>
-                                <textarea name="" id="text" cols="4" placeholder="Write a message"></textarea>
-                            </form>
-                        </div>
-                    </div>
+                    <div class="message__addressee">qwe  qweqwe</div>
+                    <div class="message__messeges">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus amet praesentium asperiores qui maxime provident impedit ad distinctio officiis laborum? Nihil nobis quas fuga repudiandae, odit hic expedita odio ex voluptatum fugit, totam provident sequi? Error suscipit est sunt, similique minus porro minima obcaecati maxime facere natus at explicabo autem quam sapiente. Quasi corrupti porro, quis id laboriosam accusantium expedita perferendis, aliquid in itaque fugit velit reprehenderit a dolor hic sapiente, labore doloremque ipsam praesentium qui voluptatibus error necessitatibus. Illo totam quo neque officiis eos. Voluptas hic beatae neque! Expedita ipsam pariatur mollitia excepturi nulla cumque animi ratione quaerat alias?</div>
+                    <form action="" method="" class="message__send-message">
+                        <button type="button" class="btn">attach</button>
+                        <textarea name="message-text" id="" class="message__text"></textarea>
+                        <button type="button" class="btn">smiles</button>
+                        <button type="button" class="btn">send</button>
+                    </form>
                 </div>
             </div>
             
         </div>
 
-                                                <!--    P O P   U Ps-->
+        <!--    P O P   U Ps-->
 
-        <!-- <div class="pop_up">
-            <div class="user_info_pop">
-                <div class="pop_block">
-                    <div class="menu_panel">
-                        <div class="burger_menu burger_close">
-                            <div class="burger"></div>
-                        </div>
-                    </div>
-                    <div class="user_face">
-                        <img src="images/users_img/2.jpg" alt="">
-                    </div>
-                    <h3>User Name</h3>
-                    <button type="button">Exit</button>
+        <div class="user-info">
+            <button type="button" class="user-info__close-btn">
+                <div>
+                    <div class="user-info__leftright"></div>
+                    <div class="user-info__rightleft"></div>
                 </div>
+            </button>
+            <div class="user-info__wrap">
+                <h2 class="user-info__name">bla bla</h2>
+                <p class="user-info__tel">1231239009900</p>
             </div>
+            <button type="button" class="user-info__btn btn">exit</button>
+        </div>
 
-            <div class="exit_pop">
+        <div class="exit-popup-wrap">
+            <div class="exit-popup">
                 <h2>Telegram</h2>
-                <p>
-                    Are you sure want to terminate this session?
-                </p>
-                <div class="exit_btn_group">
-                    <button type="button" class="exit_btn">Yes</button>
-                    <button type="button" class="cancel_btn">No</button>
+                <p>Are you sure want to terminate this session?</p>
+                <div class="exit-btn">
+                    <button type="button" class="exit-btn__yes exit-btn__yes--green btn">yes</button>
+                    <button type="button" class="exit-btn__no exit-btn__yes--red btn">no</button>
                 </div>
             </div>
-        </div> -->
+        </div>
 
-        
     </div>
 
     <script src="./js/app.js"></script>
