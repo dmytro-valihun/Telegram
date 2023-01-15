@@ -21,10 +21,11 @@ divCreateNewUserPass.style.display = 'none';
 const divWrongChangePass = document.querySelector('.create-new-password__wrong-message');
 divWrongChangePass.style.display = 'none';
 const btnChangeUserPass = document.querySelector('.create-new-password__btn');
-btnChangeUserPass.addEventListener('click', changeUserPass) 
-
-loginWindow.style.display = 'none';
-divCreateNewUserPass.style.display = 'flex';
+btnChangeUserPass.addEventListener('click', changeUserPass);
+const windowPassChangeOk = document.querySelector('.popup-pass-changed');
+windowPassChangeOk.style.display = 'none';
+const btnPassChangeOk = document.querySelector('.popup-pass-changed__ok');
+btnPassChangeOk.addEventListener('click', closeWindowChangePass);
 
 
 btnGoLogin.addEventListener('click', enterInAccount);
@@ -69,7 +70,6 @@ function showLoginPage() {
 function closePopupWindow() {
     exitPopupWindow.hidden = true;
 }
-
 function createNewPassword() {
     document.forms['createNewPass'].userName.value = '';
     document.forms['createNewPass'].userNewPass.value = '';
@@ -92,20 +92,23 @@ function changeUserPass() {
             localStorage.setItem('users', JSON.stringify(userList));
             console.log(userList);
             divCreateNewUserPass.style.display = 'none';
-            loginWindow.style.display = 'flex';
+            // loginWindow.style.display = 'flex';
             divWrongChangePass.style.display = 'none';
+            windowPassChangeOk.style.display = 'block';
         } else {
             divWrongChangePass.style.display = 'flex';
         }
     }
 }
-
 function checkPass(string) {
+    //ЭТИ 2 СТРОКИ НИЖЕ РАСКОММЕНТИРОВАТЬ, А 2 НИЖНИЕ УДАЛИТЬ!!!
     // const pattern = /^(?=.+[0-9])(?=.+[a-z])(?=.+[A-Z])[0-9a-zA-Z]{8,16}$/;
     // const result = pattern.test(string);
     const pattern = /\d/;
     const result = pattern.test(string);
     return result ? true : false;
 }
-
-// доделать ВЫ ИЗМЕНИЛИ ПАРОЛЬ
+function closeWindowChangePass() {
+    windowPassChangeOk.style.display = 'none';
+    loginWindow.style.display = 'flex';
+}
