@@ -19,14 +19,34 @@
             <h1>Telegram</h1>
             <form action="#" method="get" class="login__form">
                 <div>Enter your phone
-                    <p><input type="text" size="30" name="login" class="login__input-login"></p>
+                    <p><input type="text" size="30" name="login" class="login__input-login input"></p>
                 </div>
                 <div>Enter your password
-                    <p><input type="password" size="30" name="pass" class="login__input-pass"></p>
+                    <p><input type="password" size="30" name="pass" class="login__input-pass input"></p>
+                    <div class="login__wrong-message wrong-message">
+                        <p>Your phone number or password is wrong. Please try again.</p>
+                        <p>Forgot your password? Click <button type="button" class="login__btn-forgote-message">here</button></p>
+                    </div>
                 </div>
                 <button type="button" class="login__btn btn">login</button>
             </form>
         </div>
+
+        <form action="" class="create-new-password" name="createNewPass">
+            <div>Enter your name and surname
+                <p><input type="text" size="30" name="userName" placeholder="Name Surname" class="input"></p>
+            </div>
+            <div>Enter new password (min. 8 signs)
+                <p><input type="password" name="userNewPass" size="30" class="input"></p>
+            </div>
+            <div class="create-new-password__wrap-wrong-div">Repeate new password
+                <p><input type="password" name="repeatUserNewPass" size="30" class="input"></p>
+                <div class="create-new-password__wrong-message wrong-message">
+                    Wrong name or passwords don't match. Please try again.
+                </div>
+            </div>
+            <button type="button" class="btn create-new-password__btn">change password</button>
+        </form>
 
         <!-- main -->
 
