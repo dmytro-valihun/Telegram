@@ -91,8 +91,12 @@
     height: 100vh;
     justify-content: center;
     text-align: center;
+    position: relative;;
 }
-
+.create-new-password .close-btn-cancel-new-pass {
+    right: 30%;
+    top: 50px;
+}
 .create-new-password__wrap-wrong-div {
     position: relative;
 }
@@ -242,24 +246,24 @@
     height: 100%;
     background: #899096;
 }
-.user-info__close-btn {
+.close-btn {
     position: absolute;
     right: 20px;
     top: 10px;
     border: none;
     background-color: transparent;
 }
-.user-info__close-btn:hover {
+.close-btn:hover {
     background-color: rgb(70, 57, 57);
     border-radius: 10px;
 }
-.user-info__close-btn div {
+.close-btn div {
     cursor: pointer;
     position: relative;  
     height: 50px;
     width: 50px;
 }
-.user-info__close-btn .user-info__leftright {
+.close-btn .leftright {
     height: 4px;
     width: 50px;
     position: absolute;
@@ -268,7 +272,7 @@
     border-radius: 2px;
     transform: rotate(45deg);
 }
-.user-info__close-btn .user-info__rightleft {
+.close-btn .rightleft {
     height: 4px;
     width: 50px;
     position: absolute;
