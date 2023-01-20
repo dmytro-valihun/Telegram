@@ -46,6 +46,10 @@ function enterInAccount() {
         if (userList[i].phone === loginForm.value && userList[i].password === passForm.value) {
             loginWindow.style.display = 'none';
             messageWindow.style.display = 'flex';
+            const userName = document.querySelector('.user-info__name');
+            const userPhone = document.querySelector('.user-info__tel');
+            userName.textContent = userList[i].name;
+            userPhone.textContent = userList[i].phone;
         } else {
             divWrongPass.style.display = 'block';
         }
