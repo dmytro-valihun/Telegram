@@ -1,0 +1,42 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    h1 {
+        margin-top: 15px;
+    }
+    &__form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
+        position: relative;
+        div {
+            padding-top: 10px;
+        }
+        p {
+            margin-top: 10px;
+        }
+    }
+    &__btn {
+        margin-top: 100px;
+        &-forgote-message {
+            border: none;
+            background: none;
+            font-size: 18px;
+            text-decoration: underline blue;
+            cursor: pointer;
+            color: blue;
+        }
+    }
+    &__wrong-message {
+        position: absolute;
+        bottom: 70px;
+        margin: 0 -85px;
+    }
+    p {
+        margin-top: 0;
+        text-align: center;
+    }
+}

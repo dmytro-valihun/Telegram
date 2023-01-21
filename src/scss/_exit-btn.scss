@@ -1,0 +1,13 @@
+.exit-btn {
+    display: flex;
+    justify-content: space-between;
+    button {
+        width: 45%;
+    }
+    &__yes--green {
+        background-color: green;
+    }
+    &__yes--red {
+        background-color: red;
+    }
+}

@@ -1,0 +1,35 @@
+.close-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    border: none;
+    background-color: transparent;
+    &:hover {
+        background-color: rgb(70, 57, 57);
+        border-radius: 10px;
+    }
+    div {
+        cursor: pointer;
+        position: relative;  
+        height: 50px;
+        width: 50px;
+    }
+    .leftright {
+        height: 4px;
+        width: 50px;
+        position: absolute;
+        margin-top: 24px;
+        background-color: #337AB7;
+        border-radius: 2px;
+        transform: rotate(45deg);
+    }
+    .rightleft {
+        height: 4px;
+        width: 50px;
+        position: absolute;
+        margin-top: 24px;
+        background-color: #337AB7;
+        border-radius: 2px;
+        transform: rotate(-45deg);
+    }
+}
