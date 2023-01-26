@@ -28,7 +28,7 @@ const btnPassChangeOk = document.querySelector('.popup-pass-changed__ok');
 btnPassChangeOk.addEventListener('click', closeWindowChangePass);
 const btnCancelSetNewPass = document.querySelector('.close-btn-cancel-new-pass');
 btnCancelSetNewPass.addEventListener('click', cancelSetNewPass);
-
+const userList = JSON.parse(localStorage.getItem('users'));
 
 btnGoLogin.addEventListener('click', enterInAccount);
 btnUserMenu.addEventListener('click', showUserInfo);
@@ -41,7 +41,7 @@ function enterInAccount() {
     if (localStorage.length === 0) {
         localStorage.setItem('users', JSON.stringify(users));
     }
-    const userList = JSON.parse(localStorage.getItem('users'));
+    
     for (let i = 0; i < userList.length; i++) {
         if (userList[i].phone === loginForm.value && userList[i].password === passForm.value) {
             loginWindow.style.display = 'none';
@@ -50,20 +50,49 @@ function enterInAccount() {
             const userPhone = document.querySelector('.user-info__tel');
             userName.textContent = userList[i].name;
             userPhone.textContent = userList[i].phone;
+            createList(i);
         } else {
             divWrongPass.style.display = 'block';
         }
     }
 }
+//  Инфо о пользователе. Левая панель
 function showUserInfo() {
     userInfoMenu.style.left = 0;
 }
 function closeUserInfo() {
     userInfoMenu.style.left = '-100%';
 }
+//  Создание списка контактов на левой панели
+function createList (k) {
+    const chatList = document.querySelector('.chat-list__user-list');
+    chatList.textContent = "";
+    for (let j = 0; j < userList.length; j++){
+        if (j!=k) {
+            const elem = document.createElement('li');
+            elem.textContent = userList[j].name;
+            elem.className = 'chat-list__user';
+            elem.setAttribute('number', j);
+            chatList.appendChild(elem); 
+            elem.addEventListener('click', chattingStart)
+        }
+    }
+}
+
+//Начало общения
+function chattingStart(event){
+    // подтянуть историю ---------------- to do
+    const chatName = document.querySelector('.message__addressee');
+    const userNumber = event.target.getAttribute('number');
+    chatName.textContent = userList[userNumber].name;
+
+}
+// Выход из аккаунта
 function showPopupExit() {
     exitPopupWindow.hidden = false;
 }
+
+// Вход в аккаунт
 function showLoginPage() {
     loginWindow.style.display = 'flex';
     messageWindow.style.display = 'none';
@@ -129,3 +158,4 @@ function cancelSetNewPass() {
     passForm.value = '';
     loginWindow.style.display = 'flex';
 }
+
