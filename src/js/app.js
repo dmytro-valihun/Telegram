@@ -1,3 +1,10 @@
+const users = [
+    {name: 'Vania Kupkin', password: '1', phone: '1'},
+    {name: 'Valia Rupkina', password: '2', phone: '2'},
+    {name: 'Vasia Pupkin', password: '123456Qw', phone: '+380991231212'},
+    {name: 'Masha Dupkina', password: '123456As', phone: '+380501231212'},
+    {name: 'Petia Lupkin', password: '123456Zx', phone: '+380661231212'},
+] 
 const loginWindow = document.querySelector('.login');
 const loginForm = document.querySelector('.login__input-login');
 const passForm = document.querySelector('.login__input-pass');
@@ -29,13 +36,21 @@ btnPassChangeOk.addEventListener('click', closeWindowChangePass);
 const btnCancelSetNewPass = document.querySelector('.close-btn-cancel-new-pass');
 btnCancelSetNewPass.addEventListener('click', cancelSetNewPass);
 const userList = JSON.parse(localStorage.getItem('users'));
+const messChating = document.querySelector('.message__chatting');
+messChating.style.display = 'none';
+const btnSend = document.querySelector('.btn-send');
+const btnSmiles = document.querySelector('.btn-smiles');
+const textMessage = document.querySelector('.message__text');
+const messagesWindow = document.querySelector('.message__messeges');
 
+btnSend.addEventListener('click', sendMessage);
 btnGoLogin.addEventListener('click', enterInAccount);
 btnUserMenu.addEventListener('click', showUserInfo);
 btnCloseUserInfo.addEventListener('click', closeUserInfo);
 btnExit.addEventListener('click', showPopupExit);
 btnExitYes.addEventListener('click', showLoginPage);
 btnExitNo.addEventListener('click', closePopupWindow);
+
 
 function enterInAccount() {
     if (localStorage.length === 0) {
@@ -64,11 +79,12 @@ function closeUserInfo() {
     userInfoMenu.style.left = '-100%';
 }
 //  Создание списка контактов на левой панели
-function createList (k) {
+function createList (number) {
+    messChating.style.display = 'none';
     const chatList = document.querySelector('.chat-list__user-list');
     chatList.textContent = "";
     for (let j = 0; j < userList.length; j++){
-        if (j!=k) {
+        if (j !== number) {
             const elem = document.createElement('li');
             elem.textContent = userList[j].name;
             elem.className = 'chat-list__user';
@@ -82,11 +98,28 @@ function createList (k) {
 //Начало общения
 function chattingStart(event){
     // подтянуть историю ---------------- to do
+    messChating.style.display = 'flex';
     const chatName = document.querySelector('.message__addressee');
     const userNumber = event.target.getAttribute('number');
     chatName.textContent = userList[userNumber].name;
-
 }
+
+function sendMessage() {
+    const myMessage = textMessage.value.trim();
+    if (!(myMessage ==='')) {
+        createElements('div', myMessage, 'message__to-friend', messagesWindow)
+        textMessage.value = '';
+    }
+}
+
+function createElements(elem, text, className, parrent) {
+    const element = document.createElement(elem);
+    element.textContent = text;
+    element.className = className;
+    parrent.appendChild(element);
+}
+
+
 // Выход из аккаунта
 function showPopupExit() {
     exitPopupWindow.hidden = false;

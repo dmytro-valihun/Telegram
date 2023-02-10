@@ -31,7 +31,9 @@
     &__messeges {
         padding: 20px;
         display: flex;
-        height: 100%;
+        flex-direction: column;
+        height: 100%; 
+        overflow: auto; //// -------- нет скролла
     }
     &__send-message {
         display: flex;
@@ -44,5 +46,12 @@
         padding: 10px;
         font-size: 20px;
         border-radius: 10px;
+    }
+    &__to-friend {
+        background-color: rgba($color: #a03434, $alpha: 0.4);
+        border-radius: 10px;
+        font-size: 25px;
+        padding: 10px;
+        margin: 5px;
     }
 }

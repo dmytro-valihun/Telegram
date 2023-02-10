@@ -1,0 +1,23 @@
+.chat-list {
+    width: 30%;
+    background: rgb(110, 110, 225);
+    &__user-list {
+        list-style: none;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &__user {
+        color: aliceblue;
+        font-size: 25px;
+        margin: 0 20px;
+        padding: 20px;
+        padding-left: 50px;
+        &:hover {
+            cursor: pointer;
+            background-color: darkcyan;
+            border-radius: 10px;
+        }
+    }
+}
