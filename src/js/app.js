@@ -111,7 +111,20 @@ function chattingStart(event){
     // console.log(chatName.textContent)
 }
 
+//увеличиваем текстовое окно
+let messageHeight = 100;
+
+textMessage.addEventListener('keypress', (event) => {
+    if (event.keyCode === 13) {
+        if (messageHeight > 270) return;
+        textMessage.style.height = `${messageHeight}px`;
+        messageHeight += 20;
+    }
+})
+
 function sendMessage() {
+    messageHeight = 100;
+    textMessage.style.height = '51px'
     const myMessage = textMessage.value.trim();
     textMessage.value = '';
     let nowDate = new Date();
@@ -123,9 +136,9 @@ function sendMessage() {
     createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
     //сохрянять смс в локалстор, 
     //------------------------------------
-    const messageFromUser = {currentUser: [{currentInterlocutor: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]};
+    const messageFromUser = {[currentUser]: [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]};
     // localStorage.setItem('messages', JSON.stringify(messages));
-
+    console.log(messageFromUser)
 }
 
 function createElements(elem, text, className, parrent) {
