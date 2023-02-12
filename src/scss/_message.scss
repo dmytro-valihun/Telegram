@@ -1,18 +1,6 @@
 .message {
     width: 70%;
     position: relative;
-    &::before {
-        background-image: url(../img/bg-for-messages.svg);
-        content: '';
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        opacity: 0.3;
-    }
     &__chatting {
         display: flex;
         flex-direction: column;
@@ -33,7 +21,19 @@
         display: flex;
         flex-direction: column;
         height: 100%; 
-        overflow: auto; //// -------- нет скролла
+        overflow: auto;
+        &::after {
+            background-image: url(../img/bg-for-messages.svg);
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100% ;
+            z-index: 1;
+            opacity: 0.3;
+        }
     }
     &__send-message {
         display: flex;
@@ -48,9 +48,12 @@
         border-radius: 10px;
     }
     &__to-friend {
+        font-size: 25px;
+    }
+    &__time {
         background-color: rgba($color: #a03434, $alpha: 0.4);
         border-radius: 10px;
-        font-size: 25px;
+        font-size: 15px;
         padding: 10px;
         margin: 5px;
     }

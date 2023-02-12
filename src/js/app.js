@@ -5,6 +5,9 @@ const users = [
     {name: 'Masha Dupkina', password: '123456As', phone: '+380501231212'},
     {name: 'Petia Lupkin', password: '123456Zx', phone: '+380661231212'},
 ] 
+const messages = [];
+
+
 const loginWindow = document.querySelector('.login');
 const loginForm = document.querySelector('.login__input-login');
 const passForm = document.querySelector('.login__input-pass');
@@ -42,6 +45,7 @@ const btnSend = document.querySelector('.btn-send');
 const btnSmiles = document.querySelector('.btn-smiles');
 const textMessage = document.querySelector('.message__text');
 const messagesWindow = document.querySelector('.message__messeges');
+const userName = document.querySelector('.user-info__name');
 
 btnSend.addEventListener('click', sendMessage);
 btnGoLogin.addEventListener('click', enterInAccount);
@@ -61,7 +65,6 @@ function enterInAccount() {
         if (userList[i].phone === loginForm.value && userList[i].password === passForm.value) {
             loginWindow.style.display = 'none';
             messageWindow.style.display = 'flex';
-            const userName = document.querySelector('.user-info__name');
             const userPhone = document.querySelector('.user-info__tel');
             userName.textContent = userList[i].name;
             userPhone.textContent = userList[i].phone;
@@ -95,6 +98,8 @@ function createList (number) {
     }
 }
 
+let currentInterlocutor;
+
 //Начало общения
 function chattingStart(event){
     // подтянуть историю ---------------- to do
@@ -102,14 +107,25 @@ function chattingStart(event){
     const chatName = document.querySelector('.message__addressee');
     const userNumber = event.target.getAttribute('number');
     chatName.textContent = userList[userNumber].name;
+    currentInterlocutor = chatName.textContent;
+    // console.log(chatName.textContent)
 }
 
 function sendMessage() {
     const myMessage = textMessage.value.trim();
-    if (!(myMessage ==='')) {
-        createElements('div', myMessage, 'message__to-friend', messagesWindow)
-        textMessage.value = '';
-    }
+    textMessage.value = '';
+    let nowDate = new Date();
+    let nowHour = nowDate.getHours();
+    let nowMinutes = nowDate.getMinutes();
+    let nowSeconds = nowDate.getSeconds();
+    const currentUser = userName.textContent;
+    createElements('div', `${currentUser} - ${nowHour}:${nowMinutes}`, 'message__time', messagesWindow);
+    createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
+    //сохрянять смс в локалстор, 
+    //------------------------------------
+    const messageFromUser = {currentUser: [{currentInterlocutor: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]};
+    // localStorage.setItem('messages', JSON.stringify(messages));
+
 }
 
 function createElements(elem, text, className, parrent) {
