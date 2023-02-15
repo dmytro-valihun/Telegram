@@ -8,18 +8,13 @@ const users = [
 
 
 const messages = [
-
-
     {
-        'Vania Kupkin': 
+        'Vania Kupkin': // i
         [
             {'Valia Rupkina': [{time: 122123, sms: 'text', autor: 'Valia Rupkina'}, {time: 33333, sms: '12312312', autor: 'Vania Kupkin'}]}, 
             {'Vasia Pupkin': [{time: 122123, sms: 'text', autor: 'Vasia Pupkin'}]},
         ]
     }
-
-
-
 ]
 
 

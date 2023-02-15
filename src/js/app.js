@@ -6,7 +6,7 @@ const users = [
     {name: 'Petia Lupkin', password: '123456Zx', phone: '+380661231212'},
 ] 
 const messages = [];
-
+let existMessages = JSON.parse(localStorage.getItem('messages')) || [];
 
 const loginWindow = document.querySelector('.login');
 const loginForm = document.querySelector('.login__input-login');
@@ -60,7 +60,7 @@ function enterInAccount() {
     if (localStorage.length === 0) {
         localStorage.setItem('users', JSON.stringify(users));
     }
-    
+    messagesWindow.textContent = '';
     for (let i = 0; i < userList.length; i++) {
         if (userList[i].phone === loginForm.value && userList[i].password === passForm.value) {
             loginWindow.style.display = 'none';
@@ -103,6 +103,7 @@ let currentInterlocutor;
 //Начало общения
 function chattingStart(event){
     // подтянуть историю ---------------- to do
+    messagesWindow.textContent = '';
     messChating.style.display = 'flex';
     const chatName = document.querySelector('.message__addressee');
     const userNumber = event.target.getAttribute('number');
@@ -126,6 +127,7 @@ function sendMessage() {
     messageHeight = 100;
     textMessage.style.height = '51px'
     const myMessage = textMessage.value.trim();
+    if (!myMessage) return;
     textMessage.value = '';
     let nowDate = new Date();
     let nowHour = nowDate.getHours();
@@ -136,9 +138,36 @@ function sendMessage() {
     createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
     //сохрянять смс в локалстор, 
     //------------------------------------
-    const messageFromUser = {[currentUser]: [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]};
-    // localStorage.setItem('messages', JSON.stringify(messages));
-    console.log(messageFromUser)
+
+
+    for (let i = 0; i < existMessages.length; i++) {
+        if (existMessages[i]) {
+            // console.log(existMessages[i])
+            // console.log(existMessages[i][currentUser])
+            for (let j = 0; j < existMessages[i][currentUser].length; j++) {
+            // console.log(existMessages[i][currentUser][j])
+            existMessages[i][currentUser][j].push([{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}])
+            console.log(existMessages)  // ХЗ ПОЧЕМУ НЕ ПУШИТСЯ!
+            }
+        }
+    }
+
+
+    const messageFromUser = {
+        [currentUser]: 
+        [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
+    };
+
+    messages.push(messageFromUser);
+    existMessages = JSON.parse(localStorage.getItem('messages'));
+    localStorage.setItem('messages', JSON.stringify(messages));
+    // for (let i = 0; i < existMessages.length; i++) {
+        // console.log(existMessages)
+    // }
+    // console.log(existMessages[0][[currentUser]])
+    // console.log(messageFromUser)
+
+
 }
 
 function createElements(elem, text, className, parrent) {
@@ -220,4 +249,3 @@ function cancelSetNewPass() {
     passForm.value = '';
     loginWindow.style.display = 'flex';
 }
-
