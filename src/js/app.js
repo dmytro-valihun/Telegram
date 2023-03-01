@@ -139,35 +139,47 @@ function sendMessage() {
     //сохрянять смс в локалстор, 
     //------------------------------------
 
-
-    for (let i = 0; i < existMessages.length; i++) {
-        if (existMessages[i]) {
-            // console.log(existMessages[i])
-            // console.log(existMessages[i][currentUser])
-            for (let j = 0; j < existMessages[i][currentUser].length; j++) {
-            // console.log(existMessages[i][currentUser][j])
-            existMessages[i][currentUser][j].push([{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}])
-            console.log(existMessages)  // ХЗ ПОЧЕМУ НЕ ПУШИТСЯ!
+    if (!existMessages.length > 0) {
+        const messageFromUser = {
+            [currentUser]: 
+            [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
+        };
+        existMessages.push(messageFromUser);
+    } else {
+        existMessages.map(user => {
+            for ( key in user) {
+                if (currentUser === key) {
+                    user[currentUser].map(interlocuter => {
+                        for (key in interlocuter) {
+                            if (key === currentInterlocutor) {
+                                interlocuter[currentInterlocutor].push({time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser})
+                            } else {
+                                user[currentUser].push({[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]})
+                            }
+                        }
+                    })  
+                } else {
+                    const messageFromUser = {
+                        [currentUser]: 
+                        [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
+                    };
+                    existMessages.push(messageFromUser);
+                }
             }
-        }
+        })
     }
 
+    console.log(existMessages)
 
-    const messageFromUser = {
-        [currentUser]: 
-        [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
-    };
 
-    messages.push(messageFromUser);
-    existMessages = JSON.parse(localStorage.getItem('messages'));
-    localStorage.setItem('messages', JSON.stringify(messages));
+    // messages.push(messageFromUser);
+    // existMessages = JSON.parse(localStorage.getItem('messages'));
+    // localStorage.setItem('messages', JSON.stringify(messages));
     // for (let i = 0; i < existMessages.length; i++) {
         // console.log(existMessages)
     // }
     // console.log(existMessages[0][[currentUser]])
     // console.log(messageFromUser)
-
-
 }
 
 function createElements(elem, text, className, parrent) {
