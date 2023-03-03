@@ -17,17 +17,17 @@
     &-send {
         align-self: flex-end;
     }
-    &-smiles:hover {
-        position: relative;
-        &::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            top: -300px;
-            left: -100px;
-            border-radius: 10px;
-            background: rgba(222, 154, 154, 0.4);
-        }
-    }
+    // &-smiles:hover {
+    //     position: relative;
+    //     &::after {
+    //         content: '';
+    //         position: absolute;
+    //         width: 300px;
+    //         height: 300px;
+    //         top: -300px;
+    //         left: -100px;
+    //         border-radius: 10px;
+    //         background: rgba(222, 154, 154, 0.4);
+    //     }
+    // }
 }

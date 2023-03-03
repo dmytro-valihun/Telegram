@@ -46,6 +46,8 @@ const btnSmiles = document.querySelector('.btn-smiles');
 const textMessage = document.querySelector('.message__text');
 const messagesWindow = document.querySelector('.message__messeges');
 const userName = document.querySelector('.user-info__name');
+const smilesList = document.querySelector('.message__smiles');
+smilesList.style.display = 'none';
 
 btnSend.addEventListener('click', sendMessage);
 btnGoLogin.addEventListener('click', enterInAccount);
@@ -54,6 +56,7 @@ btnCloseUserInfo.addEventListener('click', closeUserInfo);
 btnExit.addEventListener('click', showPopupExit);
 btnExitYes.addEventListener('click', showLoginPage);
 btnExitNo.addEventListener('click', closePopupWindow);
+btnSmiles.addEventListener('click', btnSmilesHandler);
 
 
 function enterInAccount() {
@@ -123,6 +126,9 @@ textMessage.addEventListener('keypress', (event) => {
     }
 })
 
+
+
+
 function sendMessage() {
     messageHeight = 100;
     textMessage.style.height = '51px'
@@ -180,6 +186,31 @@ function sendMessage() {
     // }
     // console.log(existMessages[0][[currentUser]])
     // console.log(messageFromUser)
+}
+
+
+// использование смайлов
+function btnSmilesHandler(){
+    if (smilesList.style.display === 'block') {
+        smilesList.style.display = 'none'; 
+    }
+    else {
+        smilesList.style.display = 'block'
+    }       
+}
+addUnicode=function(n){
+    
+    let text=document.querySelector('.message__text');
+    let s=String.fromCodePoint(n);
+    console.log(s);
+	text.focus();
+	if(text.selectionStart!=undefined){
+		let p=text.selectionStart;
+		text.value=text.value.substring(0,text.selectionStart)+s+text.value.substring(text.selectionEnd,text.value.length);
+		text.selectionStart=p+s.length;
+		text.selectionEnd=text.selectionStart;
+	}
+	else text.value+=s;
 }
 
 function createElements(elem, text, className, parrent) {

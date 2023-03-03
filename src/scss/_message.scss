@@ -58,4 +58,16 @@
         padding: 10px;
         margin: 5px;
     }
+    &__smiles {
+        position: absolute;
+            width: 250px;
+            height: 300px;
+            bottom: 50px;
+            right: 1px;
+            border-radius: 10px;
+            background-color: rgb(254, 217, 217, 0.5);
+            z-index: 2;
+        font-family: 'Apple Color Emoji', 'Android Emoji', 'Segoe UI', 'EmojiSymbols', 'Symbola', 'Arial';
+        font-size: 20pt;
+    }
 }
