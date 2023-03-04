@@ -106,13 +106,19 @@ let currentInterlocutor;
 //Начало общения
 function chattingStart(event){
     // подтянуть историю ---------------- to do
+
     messagesWindow.textContent = '';
     messChating.style.display = 'flex';
     const chatName = document.querySelector('.message__addressee');
     const userNumber = event.target.getAttribute('number');
     chatName.textContent = userList[userNumber].name;
     currentInterlocutor = chatName.textContent;
-    // console.log(chatName.textContent)
+    const currentUser = userName.textContent
+    console.log(currentInterlocutor)
+    console.log(currentUser)
+
+    console.log(JSON.parse(localStorage.getItem('messages')))
+
 }
 
 //увеличиваем текстовое окно
@@ -142,7 +148,7 @@ function sendMessage() {
     const currentUser = userName.textContent;
     createElements('div', `${currentUser} - ${nowHour}:${nowMinutes}`, 'message__time', messagesWindow);
     createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
-    //сохрянять смс в локалстор, 
+    //сохраняем смс в локалстор
     //------------------------------------
 
     if (!existMessages.length > 0) {
@@ -176,6 +182,11 @@ function sendMessage() {
     }
 
     console.log(existMessages)
+
+    messages.push(existMessages);
+    localStorage.setItem('messages', JSON.stringify(existMessages))
+
+    // JSON.stringify(localStorage(setItem('messages', existMessages)))
 
 
     // messages.push(messageFromUser);
