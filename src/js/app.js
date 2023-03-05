@@ -5,8 +5,8 @@ const users = [
     {name: 'Masha Dupkina', password: '123456As', phone: '+380501231212'},
     {name: 'Petia Lupkin', password: '123456Zx', phone: '+380661231212'},
 ] 
-const messages = [];
-let existMessages = JSON.parse(localStorage.getItem('messages')) || [];
+// /const messages = [];
+let messages = JSON.parse(localStorage.getItem('messages')) || [];
 
 const loginWindow = document.querySelector('.login');
 const loginForm = document.querySelector('.login__input-login');
@@ -106,7 +106,7 @@ let currentInterlocutor;
 //Начало общения
 function chattingStart(event){
     // подтянуть историю ---------------- to do
-
+       
     messagesWindow.textContent = '';
     messChating.style.display = 'flex';
     const chatName = document.querySelector('.message__addressee');
@@ -114,10 +114,27 @@ function chattingStart(event){
     chatName.textContent = userList[userNumber].name;
     currentInterlocutor = chatName.textContent;
     const currentUser = userName.textContent
-    console.log(currentInterlocutor)
-    console.log(currentUser)
+    // console.log(currentInterlocutor)
+    // console.log(currentUser)
 
-    console.log(JSON.parse(localStorage.getItem('messages')))
+    // console.log(JSON.parse(localStorage.getItem('messages')))
+
+    const history = [];
+    console.log(222, messages);
+    for (let i = 0; i<messages.length; i++){
+        // console.log (messages[i].currentUser === currentUser)
+       if ((messages[i].currentUser === currentUser)&&(messages[i].currentInterlocutor === currentInterlocutor)){
+        // console.log(messages[i].time, messages[i].sms);
+        createElements('div', `${currentInterlocutor} - ${messages[i].time[0]}:${messages[i].time[1]}`, 'message__time', messagesWindow);
+        createElements('div', `${messages[i].sms}`, 'message__to-friend', messagesWindow.lastChild);
+       }
+       if ((messages[i].currentUser === currentInterlocutor)&&(messages[i].currentInterlocutor === currentUser)){
+        // console.log(messages[i].time, messages[i].sms);
+        createElements('div', `${currentUser} - ${messages[i].time[0]}:${messages[i].time[1]}`, 'message__time', messagesWindow);
+        createElements('div', `${messages[i].sms}`, 'message__from-friend', messagesWindow.lastChild);
+       }
+    }
+
 
 }
 
@@ -150,41 +167,58 @@ function sendMessage() {
     createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
     //сохраняем смс в локалстор
     //------------------------------------
-
-    if (!existMessages.length > 0) {
-        const messageFromUser = {
-            [currentUser]: 
-            [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
+    let messageFromUser = {
+        ID:messages.length,
+        currentUser,
+        currentInterlocutor,
+        time: [nowHour, nowMinutes, nowSeconds], 
+        sms: myMessage, 
+        author: currentUser
         };
-        existMessages.push(messageFromUser);
-    } else {
-        existMessages.map(user => {
-            for ( key in user) {
-                if (currentUser === key) {
-                    user[currentUser].map(interlocuter => {
-                        for (key in interlocuter) {
-                            if (key === currentInterlocutor) {
-                                interlocuter[currentInterlocutor].push({time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser})
-                            } else {
-                                user[currentUser].push({[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]})
-                            }
-                        }
-                    })  
-                } else {
-                    const messageFromUser = {
-                        [currentUser]: 
-                        [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
-                    };
-                    existMessages.push(messageFromUser);
-                }
-            }
-        })
-    }
+    // let messageFromUser = {
+    //     [currentUser]: 
+    //     [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
+    //     };
+    messages.push(messageFromUser);
+    // console.log(111, messageFromUser);
+    // console.log(222, messages);
+    localStorage.setItem('messages', JSON.stringify(messages))
+    
 
-    console.log(existMessages)
+    // if (!existMessages.length > 0) {
+    //     const messageFromUser = {
+    //         [currentUser]: 
+    //         [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
+    //     };
+    //     existMessages.push(messageFromUser);
+    // } else {
+    //     existMessages.map(user => {
+    //         for ( key in user) {
+    //             if (currentUser === key) {
+    //                 user[currentUser].map(interlocuter => {
+    //                     for (key in interlocuter) {
+    //                         if (key === currentInterlocutor) {
+    //                             interlocuter[currentInterlocutor].push({time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser})
+    //                         } else {
+    //                             user[currentUser].push({[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]})
+    //                         }
+    //                     }
+    //                 })  
+    //             } else {
+    //                 const messageFromUser = {
+    //                     [currentUser]: 
+    //                     [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
+    //                 };
+    //                 existMessages.push(messageFromUser);
+    //             }
+    //         }
+    //     })
+    // }
 
-    messages.push(existMessages);
-    localStorage.setItem('messages', JSON.stringify(existMessages))
+    // console.log(existMessages)
+
+    // messages.push(existMessages);
+    // localStorage.setItem('messages', JSON.stringify(existMessages))
 
     // JSON.stringify(localStorage(setItem('messages', existMessages)))
 
