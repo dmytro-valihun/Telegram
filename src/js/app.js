@@ -1,5 +1,5 @@
 const messages = [];
-// let existMessages = JSON.parse(localStorage.getItem('messages')) || [];
+const existMessages = JSON.parse(localStorage.getItem('messages')) || [];
 
 const loginWindow = document.querySelector('.login');
 const loginForm = document.querySelector('.login__input-login');
@@ -59,7 +59,7 @@ btnSmiles.addEventListener('click', btnSmilesHandler);
 // логинимся
 function enterInAccount () {
     const usersArr = [];
-    fetch('http://127.0.0.1:5501/build/users.json')
+    fetch('http://127.0.0.1:5502/build/users.json')
     .then(res => res.json())
     .then(result => {
         usersArr.push(...result);
@@ -162,7 +162,7 @@ function sendMessage() {
     createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
     //сохраняем смс в локалстор
     //------------------------------------
-    let messageFromUser = {
+    const messageFromUser = {
         ID:messages.length,
         currentUser,
         currentInterlocutor,
@@ -321,7 +321,7 @@ function changeUserPass() {
 // меняем пароль
 const checkUsers = (userName, userNewPass) => {
     const usersArr = [];
-    fetch('http://127.0.0.1:5501/build/users.json')
+    fetch('http://127.0.0.1:5502/build/users.json')
     .then(res => res.json())
     .then(result => {
         usersArr.push(...result);
