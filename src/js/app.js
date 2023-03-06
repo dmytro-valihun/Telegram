@@ -1,5 +1,5 @@
-const messages = [];
-const existMessages = JSON.parse(localStorage.getItem('messages')) || [];
+const messages = JSON.parse(localStorage.getItem('messages')) || [];
+
 
 const loginWindow = document.querySelector('.login');
 const loginForm = document.querySelector('.login__input-login');
@@ -29,7 +29,7 @@ const messagesWindow = document.querySelector('.message__messeges');
 const userName = document.querySelector('.user-info__name');
 const smilesList = document.querySelector('.message__smiles');
 let userList; // сюда запишем подтянутых юзеров
-let currentInterlocutor; // чел с которым общается шлавный юзер
+let currentInterlocutor; // чел с которым общается главный юзер
 let messageHeight = 100;// данные для увеличения окна набора смс
 
 exitPopupWindow.hidden = true;
@@ -110,44 +110,34 @@ function createList(number) {
 }
 
 
-
 //Начало общения
 function chattingStart(event){
-    // подтянуть историю ---------------- to do
-       
     messagesWindow.textContent = '';
+    smilesList.style.display = 'none';
     messChating.style.display = 'flex';
     const chatName = document.querySelector('.message__addressee');
     const userNumber = event.target.getAttribute('number');
     chatName.textContent = userList[userNumber].name;
     currentInterlocutor = chatName.textContent;
-    const currentUser = userName.textContent
-    // console.log(currentInterlocutor)
-    // console.log(currentUser)
+    const currentUser = userName.textContent;
 
-    // console.log(JSON.parse(localStorage.getItem('messages')))
 
-    const history = [];
-    console.log(222, messages);
     for (let i = 0; i < messages.length; i++){
-        // console.log (messages[i].currentUser === currentUser)
        if ((messages[i].currentUser === currentUser)&&(messages[i].currentInterlocutor === currentInterlocutor)){
-        // console.log(messages[i].time, messages[i].sms);
-        createElements('div', `${currentInterlocutor} - ${messages[i].time[0]}:${messages[i].time[1]}`, 'message__time', messagesWindow);
+        createElements('div', `${currentUser} - ${messages[i].time[0]}:${messages[i].time[1]}`, 'message__time', messagesWindow);
         createElements('div', `${messages[i].sms}`, 'message__to-friend', messagesWindow.lastChild);
        }
        if ((messages[i].currentUser === currentInterlocutor)&&(messages[i].currentInterlocutor === currentUser)){
-        // console.log(messages[i].time, messages[i].sms);
-        createElements('div', `${currentUser} - ${messages[i].time[0]}:${messages[i].time[1]}`, 'message__time', messagesWindow);
-        createElements('div', `${messages[i].sms}`, 'message__from-friend', messagesWindow.lastChild);
+        createElements('div', `${currentInterlocutor} - ${messages[i].time[0]}:${messages[i].time[1]}`, 'message__time', messagesWindow);
+        createElements('div', `${messages[i].sms}`, 'message__to-friend', messagesWindow.lastChild);
        }
     }
 }
 
 
 
-
 function sendMessage() {
+    smilesList.style.display = 'none';
     messageHeight = 100;
     textMessage.style.height = '51px'
     const myMessage = textMessage.value.trim();
@@ -156,76 +146,24 @@ function sendMessage() {
     let nowDate = new Date();
     let nowHour = nowDate.getHours();
     let nowMinutes = nowDate.getMinutes();
-    let nowSeconds = nowDate.getSeconds();
+    if (nowMinutes >= 0 && nowMinutes <= 9) {
+        nowMinutes = '0' + nowMinutes;
+    }
     const currentUser = userName.textContent;
     createElements('div', `${currentUser} - ${nowHour}:${nowMinutes}`, 'message__time', messagesWindow);
     createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
-    //сохраняем смс в локалстор
-    //------------------------------------
     const messageFromUser = {
-        ID:messages.length,
+        id: Date.now(),
         currentUser,
         currentInterlocutor,
-        time: [nowHour, nowMinutes, nowSeconds], 
+        time: [nowHour, nowMinutes], 
         sms: myMessage, 
         author: currentUser
-        };
-    // let messageFromUser = {
-    //     [currentUser]: 
-    //     [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
-    //     };
+    };
+
     messages.push(messageFromUser);
-    // console.log(111, messageFromUser);
-    // console.log(222, messages);
+
     localStorage.setItem('messages', JSON.stringify(messages))
-    
-
-    // if (!existMessages.length > 0) {
-    //     const messageFromUser = {
-    //         [currentUser]: 
-    //         [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
-    //     };
-    //     existMessages.push(messageFromUser);
-    // } else {
-    //     existMessages.map(user => {
-    //         for ( key in user) {
-    //             if (currentUser === key) {
-    //                 user[currentUser].map(interlocuter => {
-    //                     for (key in interlocuter) {
-    //                         if (key === currentInterlocutor) {
-    //                             interlocuter[currentInterlocutor].push({time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser})
-    //                         } else {
-    //                             user[currentUser].push({[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]})
-    //                         }
-    //                     }
-    //                 })  
-    //             } else {
-    //                 const messageFromUser = {
-    //                     [currentUser]: 
-    //                     [{[currentInterlocutor]: [{time: [nowHour, nowMinutes, nowSeconds], sms: myMessage, author: currentUser}]}]
-    //                 };
-    //                 existMessages.push(messageFromUser);
-    //             }
-    //         }
-    //     })
-    // }
-
-    // console.log(existMessages)
-
-    // messages.push(existMessages);
-    // localStorage.setItem('messages', JSON.stringify(existMessages))
-
-    // JSON.stringify(localStorage(setItem('messages', existMessages)))
-
-
-    // messages.push(messageFromUser);
-    // existMessages = JSON.parse(localStorage.getItem('messages'));
-    // localStorage.setItem('messages', JSON.stringify(messages));
-    // for (let i = 0; i < existMessages.length; i++) {
-        // console.log(existMessages)
-    // }
-    // console.log(existMessages[0][[currentUser]])
-    // console.log(messageFromUser)
 }
 
 
@@ -310,7 +248,7 @@ function changeUserPass() {
     const userNewPass = document.forms['createNewPass'].userNewPass.value;
     const repeatUserNewPass = document.forms['createNewPass'].repeatUserNewPass.value;
     const pass_1 = checkPass(userNewPass);
-    const pass_2 = checkPass(repeatUserNewPass);
+    checkPass(repeatUserNewPass);
 
     if ((userNewPass === repeatUserNewPass) && pass_1 === true) {
         checkUsers(userName, userNewPass);
@@ -336,7 +274,7 @@ function finalChange(arr, userName, userNewPass) {
         divWrongChangePass.style.display = 'none';
         windowPassChangeOk.style.display = 'block';
         //надо тут записать новый пароль в json чтобы он был доступен, а так остается старый пароль
-        // matchesPass.password = userNewPass => и это сплайсом вставить в бекенд
+        // matchesPass.password = userNewPass => и это вставить в бекенд
     } else {
         divWrongChangePass.style.display = 'flex';
     }
