@@ -1,5 +1,6 @@
 const messages = JSON.parse(localStorage.getItem('messages')) || [];
-
+let isUserLogged = JSON.parse(localStorage.getItem('isUserLogged')) || false;
+let currentUserInAccount = JSON.parse(localStorage.getItem('currentUserInAccount')) || false;
 
 const loginWindow = document.querySelector('.login');
 const loginForm = document.querySelector('.login__input-login');
@@ -55,9 +56,20 @@ btnExitYes.addEventListener('click', showLoginPage);
 btnExitNo.addEventListener('click', closePopupWindow);
 btnSmiles.addEventListener('click', btnSmilesHandler);
 
+// не выкидывает если юзер залогинен
+if (isUserLogged === true) {
+    userList = JSON.parse(localStorage.getItem('contacts'));
+    messagesWindow.textContent = '';
+    loginWindow.style.display = 'none';
+    messageWindow.style.display = 'flex';
+    const userPhone = document.querySelector('.user-info__tel');
+    userName.textContent = currentUserInAccount.name;
+    userPhone.textContent = currentUserInAccount.phone;
+    createList(currentUserInAccount.id);
+}
 
 // логинимся
-function enterInAccount () {
+function enterInAccount() {
     const usersArr = [];
     fetch('http://127.0.0.1:5502/build/users.json')
     .then(res => res.json())
@@ -78,6 +90,11 @@ function finalEnter(arr) {
         userName.textContent = matchesUser.name;
         userPhone.textContent = matchesUser.phone;
         createList(matchesUser.id);
+        isUserLogged = true;
+        localStorage.setItem('isUserLogged', JSON.stringify(isUserLogged));
+        currentUserInAccount = matchesUser;
+        localStorage.setItem('currentUserInAccount', JSON.stringify(currentUserInAccount));
+        localStorage.setItem('contacts', JSON.stringify(userList));
     } else {
         divWrongPass.style.display = 'block';
     }
@@ -104,7 +121,7 @@ function createList(number) {
             elem.className = 'chat-list__user';
             elem.setAttribute('number', j);
             chatList.appendChild(elem); 
-            elem.addEventListener('click', chattingStart)
+            elem.addEventListener('click', chattingStart);
         }
     }
 }
@@ -120,7 +137,6 @@ function chattingStart(event){
     chatName.textContent = userList[userNumber].name;
     currentInterlocutor = chatName.textContent;
     const currentUser = userName.textContent;
-
 
     for (let i = 0; i < messages.length; i++){
        if ((messages[i].currentUser === currentUser)&&(messages[i].currentInterlocutor === currentInterlocutor)){
@@ -141,6 +157,7 @@ function sendMessage() {
     messageHeight = 100;
     textMessage.style.height = '51px'
     const myMessage = textMessage.value.trim();
+
     if (!myMessage) return;
     textMessage.value = '';
     let nowDate = new Date();
@@ -152,6 +169,7 @@ function sendMessage() {
     const currentUser = userName.textContent;
     createElements('div', `${currentUser} - ${nowHour}:${nowMinutes}`, 'message__time', messagesWindow);
     createElements('div', myMessage, 'message__to-friend', messagesWindow.lastChild);
+    
     const messageFromUser = {
         id: Date.now(),
         currentUser,
@@ -196,7 +214,7 @@ addUnicode=function(n){
 // хелпер - создать елемент
 function createElements(elem, text, className, parrent) {
     const element = document.createElement(elem);
-    element.textContent = text;
+    element.innerHTML = `<pre>${text}</pre>`;
     element.className = className;
     parrent.appendChild(element);
 }
@@ -224,6 +242,12 @@ function showLoginPage() {
     divWrongPass.style.display = 'none';
     loginForm.value = '';
     passForm.value = '';
+    isUserLogged = false;
+    localStorage.setItem('isUserLogged', JSON.stringify(isUserLogged));
+    currentUserInAccount = false;
+    localStorage.setItem('currentUserInAccount', JSON.stringify(currentUserInAccount));
+
+    localStorage.setItem('contacts', JSON.stringify(false));
 }
 
 // кнопка не выходить с аккаунта
