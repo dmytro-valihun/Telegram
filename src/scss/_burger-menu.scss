@@ -1,31 +1,32 @@
 .burger-menu {
     padding: 20px;
     display: flex;
-    &__wrap{
+    &__wrap {
         cursor: pointer;
         position: relative;
         padding: 17px 10px 19px;
-        border: 1px solid black;
+        border: 2px solid black;
         border-radius: 8px;
     }
     &__btn {
-        width: 20px;
-        height: 3px;
-        background-color: #858383;
+        width: 25px;
+        height: 4px;
+        background-color: #230c0c;
+        margin-top: 1px;
         cursor: pointer;
         &::before {
             content: '';
-            width: 20px;
-            height: 3px;
-            background-color: #858383;
+            width: 25px;
+            height: 4px;
+            background-color: #230c0c;
             position: absolute;
-            top: 24px;
+            top: 26px;
         }
         &::after {
             content: '';
-            width: 20px;
-            height: 3px;
-            background-color: #858383;
+            width: 25px;
+            height: 4px;
+            background-color: #230c0c;
             position: absolute;
             top: 10px;
         } 

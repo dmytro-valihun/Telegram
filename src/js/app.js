@@ -63,8 +63,8 @@ if (isUserLogged === true) {
     loginWindow.style.display = 'none';
     messageWindow.style.display = 'flex';
     const userPhone = document.querySelector('.user-info__tel');
-    userName.textContent = currentUserInAccount.name;
-    userPhone.textContent = currentUserInAccount.phone;
+    userName.innerHTML = `You:<br>${currentUserInAccount.name}`;
+    userPhone.innerHTML = `Phone number:<br>${currentUserInAccount.phone}`;
     createList(currentUserInAccount.id);
 }
 
@@ -87,8 +87,8 @@ function finalEnter(arr) {
         loginWindow.style.display = 'none';
         messageWindow.style.display = 'flex';
         const userPhone = document.querySelector('.user-info__tel');
-        userName.textContent = matchesUser.name;
-        userPhone.textContent = matchesUser.phone;
+        userName.innerHTML = `You:<br>${matchesUser.name}`;
+        userPhone.innerHTML = `Phone number:<br>${matchesUser.phone}`;
         createList(matchesUser.id);
         isUserLogged = true;
         localStorage.setItem('isUserLogged', JSON.stringify(isUserLogged));
