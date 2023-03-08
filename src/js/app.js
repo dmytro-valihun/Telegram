@@ -63,8 +63,8 @@ if (isUserLogged === true) {
     loginWindow.style.display = 'none';
     messageWindow.style.display = 'flex';
     const userPhone = document.querySelector('.user-info__tel');
-    userName.innerHTML = `You:<br>${currentUserInAccount.name}`;
-    userPhone.innerHTML = `Phone number:<br>${currentUserInAccount.phone}`;
+    userName.textContent = currentUserInAccount.name;
+    userPhone.textContent = currentUserInAccount.phone;
     createList(currentUserInAccount.id);
 }
 
@@ -87,8 +87,8 @@ function finalEnter(arr) {
         loginWindow.style.display = 'none';
         messageWindow.style.display = 'flex';
         const userPhone = document.querySelector('.user-info__tel');
-        userName.innerHTML = `You:<br>${matchesUser.name}`;
-        userPhone.innerHTML = `Phone number:<br>${matchesUser.phone}`;
+        userName.textContent = matchesUser.name;
+        userPhone.textContent = matchesUser.phone;
         createList(matchesUser.id);
         isUserLogged = true;
         localStorage.setItem('isUserLogged', JSON.stringify(isUserLogged));
@@ -194,18 +194,17 @@ function btnSmilesHandler(){
         smilesList.style.display = 'block';
     }       
 }
-addUnicode=function(n){
-    let text=document.querySelector('.message__text');
-    let s=String.fromCodePoint(n);
-    console.log(s);
+addUnicode = function(n) {
+    let text = document.querySelector('.message__text');
+    let s = String.fromCodePoint(n);
 	text.focus();
-	if(text.selectionStart!=undefined){
-		let p=text.selectionStart;
-		text.value=text.value.substring(0,text.selectionStart)+s+text.value.substring(text.selectionEnd,text.value.length);
-		text.selectionStart=p+s.length;
-		text.selectionEnd=text.selectionStart;
+	if (text.selectionStart!=undefined) {
+		let p = text.selectionStart;
+		text.value = text.value.substring(0,text.selectionStart)+s+text.value.substring(text.selectionEnd,text.value.length);
+		text.selectionStart = p+s.length;
+		text.selectionEnd = text.selectionStart;
 	}
-	else text.value+=s;
+	else text.value += s;
 }
 
 

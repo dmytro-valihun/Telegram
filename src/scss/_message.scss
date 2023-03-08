@@ -7,7 +7,7 @@
         height: 100%;
     }
     &__addressee {
-        background-color: #899096;
+        background-color: #dabeb6;
         height: 45px;
         display: flex;
         justify-content: center;
@@ -52,17 +52,20 @@
     }
     &__to-friend {
         font-size: 25px;
-        color: #772b90;
+        font-weight: 700;
+        color: #151c28;
         margin-top: 10px;
     }
     &__time {
         position: sticky;
-        background-color: rgba($color: #a03434, $alpha: 0.4);
+        z-index: 2;
+        background-color: rgba(218, 190, 182, 0.7);
         border-radius: 10px;
         font-size: 18px;
         font-weight: 900;
         padding: 10px;
         margin: 5px;
+        color: #0e2b5c;
         &:last-child {
             margin-bottom: 30px;
         }
@@ -74,7 +77,7 @@
         right: 0;
         padding: 10px;
         border-radius: 10px;
-        background-color: rgb(254, 217, 217, 0.6);
+        background-color: rgb(218, 190, 182,0.6);
         z-index: 99;
         font-size: 16pt;
         a {

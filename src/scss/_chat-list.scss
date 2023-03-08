@@ -1,6 +1,6 @@
 .chat-list {
     width: 30%;
-    background: rgb(110, 110, 225);
+    background: #b2c8df;
     &__user-list {
         list-style: none;
         padding: 20px;
@@ -13,6 +13,7 @@
     }
     &__user {
         color: aliceblue;
+        background:#0087c1;
         font-size: 25px;
         margin: 0 20px;
         padding: 20px;
@@ -21,7 +22,7 @@
         border: 1px solid rgb(15, 51, 50);
         &:hover {
             cursor: pointer;
-            background-color: darkcyan;
+            background-color: #00498e;
             border-radius: 10px;
         }
     }
