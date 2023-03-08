@@ -31,5 +31,8 @@
     "url": "https://github.com/dmytro-valihun/Telegram/issues"
   },
   "homepage": "https://github.com/dmytro-valihun/Telegram#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "gulp-concat": "^2.6.1"
+  }
 }

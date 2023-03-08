@@ -1,0 +1,13 @@
+btnChangeUserPass.addEventListener('click', changeUserPass);
+btnPassChangeOk.addEventListener('click', closeWindowChangePass);
+btnCancelSetNewPass.addEventListener('click', cancelSetNewPass);
+btnChangeUserPass.addEventListener('click', changeUserPass);
+btnForgotPassword.addEventListener('click', createNewPassword);
+btnSend.addEventListener('click', sendMessage);
+btnGoLogin.addEventListener('click', enterInAccount);
+btnUserMenu.addEventListener('click', showUserInfo);
+btnCloseUserInfo.addEventListener('click', closeUserInfo);
+btnExit.addEventListener('click', showPopupExit);
+btnExitYes.addEventListener('click', showLoginPage);
+btnExitNo.addEventListener('click', closePopupWindow);
+btnSmiles.addEventListener('click', btnSmilesHandler);

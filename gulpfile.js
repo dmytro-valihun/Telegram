@@ -1,12 +1,11 @@
 import gulp from 'gulp';
 import sass from 'sass';
 import gulpSass from 'gulp-sass';
-import webpack from 'gulp-webpack';
 import babel from 'gulp-babel-minify';
 import cleanCss from 'gulp-clean-css';
 import imagemin from 'gulp-imagemin';
-import rename from 'gulp-rename';
 import htmlmin from 'gulp-htmlmin';
+import concat from 'gulp-concat';
 
 const cssCompiler = gulpSass(sass);
 const SRC_FOLDER = './src';
@@ -29,9 +28,8 @@ async function convertSassToCss() {
 }
 async function convertJS() {
     gulp.src(ALL_JS_FILES_PATH)
-    .pipe(webpack())
     .pipe(babel())
-    .pipe(rename('script.js'))
+    .pipe(concat('script.js'))
     .pipe(gulp.dest(BUILD_FOLDER + '/js'));
 }
 async function convertIMG() {
